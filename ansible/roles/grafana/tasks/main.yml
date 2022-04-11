@@ -13,8 +13,16 @@
       name: grafana
       state: present
 
+  - name: Copy configuration file
+    template:
+      src: grafana.ini.j2
+      dest: /etc/grafana/grafana.ini
+    notify:
+      - grafana_restart
+
   - name: Enable and start grafana
     service:
       name: grafana-server
       state: started
       enabled: yes
+

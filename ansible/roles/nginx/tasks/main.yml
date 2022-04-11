@@ -16,3 +16,11 @@
       name: nginx
       state: started
       enabled: yes
+
+  - name: Configure firewall
+    firewalld:
+      port: 80/tcp
+      permanent: yes
+      immediate: yes
+      state: enabled
+

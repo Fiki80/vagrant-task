@@ -1,8 +1,25 @@
 ---
 - hosts: all
+
+  vars_files:
+    - vault.yml
+
   roles:
     - role: nginx
       become: yes
 
     - role: grafana
       become: yes
+
+    - role: prometheus
+      become: yes
+
+  # SELinux issues
+  post_tasks:
+    - name: Install policycoreutils
+      become: yes
+      dnf:
+        name: policycoreutils-python-utils
+        state: present
+
+# Move become somewhere else???

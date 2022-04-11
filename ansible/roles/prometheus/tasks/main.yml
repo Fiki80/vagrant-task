@@ -1,16 +1,12 @@
 ---
-  - name: Add Prometheus repo
-    yum_repository:
-      name: prometheus
-      description: prometheus
-      baseurl: https://packagecloud.io/prometheus-rpm/release/el/$releasever/$basearch
-      gpgcheck: yes
-      gpgkey: https://packages.grafana.com/gpg.key
+  - name: Enable EPEL repository
+    dnf:
+      name: epel-release
       state: present
 
   - name: Install Prometheus
     dnf:
-      name: grafana
+      name: golang-github-prometheus
       state: present
 
   - name: Enable and start Prometheus service
