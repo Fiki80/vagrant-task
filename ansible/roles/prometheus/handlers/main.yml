@@ -1,0 +1,12 @@
+---
+- name: prometheus_restart
+  become: yes
+  service:
+    name: prometheus
+    state: restarted
+
+- name: prometheus_reload
+  become: yes
+  service:
+    name: prometheus
+    state: reloaded

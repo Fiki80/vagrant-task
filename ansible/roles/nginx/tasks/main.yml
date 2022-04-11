@@ -1,0 +1,18 @@
+---
+  - name: Install nginx
+    dnf:
+      name: nginx
+      state: present
+
+  - name: Copy configuration file
+    template:
+      src: nginx.conf
+      dest: /etc/nginx/nginx.conf
+    notify:
+      - nginx_reload
+
+  - name: Enable and start nginx service
+    service:
+      name: nginx
+      state: started
+      enabled: yes

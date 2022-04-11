@@ -1,0 +1,8 @@
+---
+- hosts: all
+  roles:
+    - role: nginx
+      become: yes
+
+    - role: grafana
+      become: yes
