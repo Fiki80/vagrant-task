@@ -1,1 +1,1 @@
-This repository contains code to build nginx based webserver from ground up.
+This repository contains code to build a simple webserver using Vagrant and Ansible.
