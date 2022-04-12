@@ -4,6 +4,14 @@
   vars_files:
     - vault.yml
 
+  # SELinux issues
+  pre_tasks:
+    - name: Install policycoreutils
+      become: yes
+      dnf:
+        name: policycoreutils-python-utils
+        state: present
+
   roles:
     - role: nginx
       become: yes
@@ -13,13 +21,5 @@
 
     - role: prometheus
       become: yes
-
-  # SELinux issues
-  post_tasks:
-    - name: Install policycoreutils
-      become: yes
-      dnf:
-        name: policycoreutils-python-utils
-        state: present
 
 # Move become somewhere else???

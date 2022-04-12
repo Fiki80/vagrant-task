@@ -15,7 +15,13 @@ Vagrant has to be installed on the host machine. In case of running VM on local 
 
 ## Build
 
-After cloning this repository simply issue:
+After cloning this repository simply issue:  
 `vagrant up`
 
+
+TODO:
+
 Vault password can be found in ansible/vault_pass file.
+Localhost access via http://localhost:8080/grafana
+
+
