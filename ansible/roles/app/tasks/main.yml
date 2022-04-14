@@ -1,0 +1,30 @@
+---
+  - name: Create user with permissions
+    shell: |
+      useradd -U web
+      chown -R web:web /opt/python
+
+  - name: Install prerequisities
+    pip:
+      name: ['flask', 'prometheus-client']
+      virtualenv: /opt/python/virtual
+      virtualenv_command: /usr/bin/python3 -m venv
+
+  - name: Copy app
+    copy:
+      src: app.py
+      dest: /opt/python/app/
+      owner: web
+      group: web
+      mode: '0500'
+
+  - name: Copy service file
+    template:
+      src: webapp.service.j2
+      dest: /etc/systemd/system/webapp.service
+
+  - name: Enable and start service
+    service:
+      name: webapp
+      state: started
+      enabled: yes

@@ -5,7 +5,7 @@ After=network.target
 [Service]
 User=web
 WorkingDirectory=/opt/python/app
-ExecStart=/usr/bin/python3 app.py
+ExecStart=/opt/python/virtual/bin/python3 app.py
 Restart=on-failure
 
 [Install]

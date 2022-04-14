@@ -7,6 +7,17 @@ http {
 		listen {{ nginx_listen_port }};
 		server_name {{ nginx_server_name }};
 		
+		location / {
+			proxy_set_header Host $http_host;
+	    	proxy_pass http://localhost:5000;
+		}
+		
+		location /health {
+			proxy_set_header Host $http_host;
+	    	proxy_pass http://localhost:5000/metrics;
+		}
+
+
 		location = /grafana {
 			proxy_set_header Host $http_host;
 	    	proxy_pass http://localhost:3000/;

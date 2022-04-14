@@ -21,5 +21,8 @@
 
     - role: prometheus
       become: yes
+    
+    - role: app
+      become: yes
 
 # Move become somewhere else???
