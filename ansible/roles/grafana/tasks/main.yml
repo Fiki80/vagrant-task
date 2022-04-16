@@ -20,6 +20,25 @@
     notify:
       - grafana_restart
 
+  - name: Copy datasource
+    template:
+      src: datasource.yml.j2
+      dest: /etc/grafana/provisioning/datasources/default.yaml
+    notify:
+      - grafana_restart
+
+  - name: Copy dashboard config
+    template:
+      src: dashboard.yml.j2
+      dest: /etc/grafana/provisioning/dashboards/default.yaml
+    notify:
+      - grafana_restart
+
+  - name: Copy dashboard
+    copy:
+      src: dashboard.json
+      dest: /etc/grafana/provisioning/dashboards/
+
   - name: Enable and start grafana
     service:
       name: grafana-server

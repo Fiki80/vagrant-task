@@ -1,33 +1,29 @@
 events {
-	worker_connections 1024;
+    worker_connections 1024;
 }
 
 http {
-	server {
-		listen {{ nginx_listen_port }};
-		server_name {{ nginx_server_name }};
-		
-		location / {
-			proxy_set_header Host $http_host;
-	    	proxy_pass http://localhost:5000;
-		}
-		
-		location /health {
-			proxy_set_header Host $http_host;
-	    	proxy_pass http://localhost:5000/metrics;
-		}
+    server {
+        listen {{ nginx_listen_port }};
+        server_name {{ nginx_server_name }};
 
+        location /app/ {
+            proxy_set_header Host $http_host;
+            proxy_pass http://localhost:5000/;
+        }
 
-		location = /grafana {
-			proxy_set_header Host $http_host;
-	    	proxy_pass http://localhost:3000/;
-		}
-			
-		location /grafana/ {
-			proxy_set_header Host $http_host;
-	    	proxy_pass http://localhost:3000/;
-		}
+        location /health/ {
+            proxy_set_header Host $http_host;
+            proxy_pass http://localhost:5000/metrics;
+        }
 
+        location = /grafana/dashboard/ {
+            return 301 $scheme://localhost:8080/grafana/d/VeVrUQ8nz/webapp?orgId=1;
+        }
 
-	}
+        location /grafana/ {
+            proxy_set_header Host $http_host;
+            proxy_pass http://localhost:3000/;
+        }
+    }
 }

@@ -19,7 +19,7 @@
 
   - name: Configure firewall
     firewalld:
-      port: 80/tcp
+      port: 8080/tcp
       permanent: yes
       immediate: yes
       state: enabled

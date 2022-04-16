@@ -9,6 +9,14 @@
       name: golang-github-prometheus
       state: present
 
+  - name: Configure prometheus scraper
+    template:
+      src: prometheus.yml.j2
+      dest: /etc/prometheus/prometheus.yml 
+    notify:
+      - prometheus_restart
+
+
   - name: Enable and start Prometheus service
     service:
       name: prometheus
