@@ -34,7 +34,7 @@ Python application also generates artificial CPU stress (around 50% usage on one
 ./pass_gen -u USER -p PASSWORD
 ```
 
-4. To provision and start VM, issue:
+4. To provision and start VM, cd inside the cloned repository and issue:
 ```
 vagrant up
 ```
