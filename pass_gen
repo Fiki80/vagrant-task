@@ -1,0 +1,47 @@
+#!/bin/bash
+
+SCRIPT=$(basename "$0")
+BINARY="ansible-vault"
+VAULT="ansible/vault.yml"
+VAULT_PASS="ansible/vault_pass"
+
+usage() {
+	RC="$1"
+	printf "%s\n\n" "Usage: $SCRIPT [-u USERNAME -p PASSWORD]"
+	exit $RC
+}
+
+vault_write() {
+	cat <<- EOF > $VAULT
+	gf_user: $1
+	gf_pass: $2
+	EOF
+}
+
+
+# Main
+if [ $# -ne 4 ]; then 
+	usage 1
+fi
+
+type $BINARY > /dev/null 2>&1 || { echo >&2 "You have to install $BINARY to use this script!"; exit 1; }
+
+while getopts "u:p:" opts; do
+	case $opts in
+		u) GF_USER=$OPTARG;;
+		p) GF_PASS=$OPTARG;;
+	esac
+done
+
+echo -e "\nGrafana login credentials:"
+echo "User: $GF_USER"
+echo "Password: $GF_PASS"
+
+vault_write $GF_USER $GF_PASS
+exec $BINARY encrypt --vault-password-file=$VAULT_PASS $VAULT > /dev/null 2>&1
+
+if [ $? -eq 0 ] || { echo "Vault encryption unsuccessful"; exit 1; }
+
+
+exit 0
+
