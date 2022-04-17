@@ -15,7 +15,8 @@ Following components will be installed in the target VM:
 
 ## Architectural overview
 
-Python web application, Grafana and Prometheus are running behind Nginx server configured as reverse proxy. Python application generates artificial load to emulate real application.
+Python web application, Grafana and Prometheus are running behind Nginx server configured as reverse proxy. Using Prometheus client library for Python, web application generates and exposes metrics to be scraped by Prometheus. Grafana is configured to source data from Prometheus and displays application's CPU utilization, RAM utilization and custom page visit counter. 
+Python application also generates artificial CPU stress to emulate real application.
 
 ## Requirements
 
@@ -54,9 +55,11 @@ Python application displaying page visit counter is accessible via:
 http://localhost:8080/app
 ```
 
-
 ### Destroying VM
 To destroy created virtual machine issue command:
 ```
 vagrant destroy
 ```
+
+## Links
+- https://github.com/prometheus/client_python
