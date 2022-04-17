@@ -28,12 +28,13 @@ Python application also generates artificial CPU stress (around 50% usage on one
 
 ### Initial setup:
 1. Install required dependencies.
-2. Use included Bash script 'pass_gen' to generate login credentials for Grafana web interface.
+2. Clone this repository
+3. Use included Bash script 'pass_gen' to generate login credentials for Grafana web interface.
 ```
 ./pass_gen -u USER -p PASSWORD
 ```
 
-3. To provision and start VM, issue:
+4. To provision and start VM, issue:
 ```
 vagrant up
 ```
