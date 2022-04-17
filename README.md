@@ -16,7 +16,7 @@ Following components will be installed in the target VM:
 ## Architectural overview
 
 Python web application, Grafana and Prometheus are running behind Nginx server configured as reverse proxy. Using Prometheus client library for Python, web application generates and exposes metrics to be scraped by Prometheus. Grafana is configured to source data from Prometheus and displays application's CPU utilization, RAM utilization and custom page visit counter. 
-Python application also generates artificial CPU stress to emulate real application.
+Python application also generates artificial CPU stress (around 50% usage on one CPU core) to emulate real application.
 
 ## Requirements
 
