@@ -15,7 +15,7 @@ Following components will be installed in the target VM:
 
 ## Architectural overview
 
-Python web application, Grafana and Prometheus are running behind Nginx server configured as reverse proxy. Access locations to Grafana and web application are described in the paragraphs below.
+Python web application, Grafana and Prometheus are running behind Nginx server configured as reverse proxy. Python application generates artificial load to emulate real application.
 
 ## Requirements
 
