@@ -27,12 +27,10 @@ Python web application, Grafana and Prometheus are running behind Nginx server c
 
 ### Initial setup:
 1. Install required dependencies.
-2. Use included Bash script 'pass_gen' to generate login credentials for Grafana.
+2. Use included Bash script 'pass_gen' to generate login credentials for Grafana web interface.
 ```
 ./pass_gen -u USER -p PASSWORD
 ```
-Generated credentials are automatically stored in Ansible Vault file.
-
 
 3. To provision and start VM, issue:
 ```
@@ -43,13 +41,11 @@ vagrant up
 Grafana web interface can be accessed via: 
 ```
 http://localhost:8080/grafana
-
 ```
 
 Pre-configured dashboard displaying web app's metrics:
 ```
 http://localhost:8080/grafana/dashboard
-
 ```
 
 ### Web application
