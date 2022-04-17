@@ -50,7 +50,7 @@ http://localhost:8080/grafana/dashboard
 
 ### Web application
 Python application displaying page visit counter is accessible via:
-````
+```
 http://localhost:8080/app
 ```
 
